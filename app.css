@@ -1,4 +1,13 @@
-
+.jtk-node {
+    border:1px solid #ccc;
+    background-color:white;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border-radius:3px;
+    min-width:100px;
+    padding:10px;
+}
 
 .jtk-group {
     border:2px solid #9e9e9e;
