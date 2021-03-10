@@ -178,7 +178,7 @@
             }
         });
 
-        var datasetView = new jsPlumbSyntaxHighlighter(toolkit, ".jtk-demo-dataset", "json", 2);
+        var datasetView = jsPlumbToolkitSyntaxHighlighter.newInstance(toolkit, ".jtk-demo-dataset", "json", 2);
     });
 
 })();
