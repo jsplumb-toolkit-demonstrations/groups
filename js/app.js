@@ -1,7 +1,7 @@
 ;
 (function () {
 
-    jsPlumbToolkit.ready(function () {
+    jsPlumbToolkitBrowserUI.ready(function () {
 
 
 // jsPlumbToolkit code.
@@ -10,7 +10,8 @@
         var data = {
             "groups":[
                 {"id":"one", "title":"Group 1", "left":100, top:50 },
-                {"id":"two", "title":"Group 2", "left":450, top:250, type:"constrained"  }
+                {"id":"two", "title":"Group 2", "left":750, top:250, type:"constrained"  },
+                {"id":"three", "title":"Nested Group", "left":50, "top":50, "group":"two"  }
             ],
             "nodes": [
                 { "id": "window1", "name": "1", "left": 10, "top": 20, group:"one" },
@@ -68,7 +69,7 @@
 
         // 2. get a jsPlumbToolkit instance. provide a groupFactory; when you drag a Group on to the Surface we
         // set an appropriate title for the new Group.
-        var toolkit = window.toolkit = jsPlumbToolkit.newInstance({
+        var toolkit = jsPlumbToolkitBrowserUI.newInstance({
             groupFactory:function(type, data, callback) {
                 data.title = "Group " + (toolkit.getGroupCount() + 1);
                 callback(data);
@@ -85,26 +86,31 @@
             miniviewElement = mainElement.querySelector(".miniview");
 
         // 3. load the data, and then render it to "main" with a Spring layout
-        var renderer = window.renderer = toolkit.render({
-            container: canvasElement,
+        var renderer = toolkit.render(canvasElement, {
             view: view,
             layout: {
                 type: "Spring",
-                absoluteBacked:false
+                absoluteBacked:true
             },
-            jsPlumb: {
-                Anchor:"Continuous",
-                Endpoint: "Blank",
-                Connector: [ "StateMachine", { cssClass: "connectorClass", hoverClass: "connectorHoverClass" } ],
-                PaintStyle: { strokeWidth: 1, stroke: '#89bcde' },
-                HoverPaintStyle: { stroke: "orange" },
-                Overlays: [
-                    [ "Arrow", { fill: "#09098e", width: 10, length: 10, location: 1 } ]
+            defaults: {
+                anchor:"Continuous",
+                endpoint: "Blank",
+                connector: { type:"StateMachine", options:{ cssClass: "connectorClass", hoverClass: "connectorHoverClass" } },
+                paintStyle: { strokeWidth: 1, stroke: '#89bcde' },
+                hoverPaintStyle: { stroke: "orange" },
+                overlays: [
+                    { type:"Arrow", options:{ fill: "#09098e", width: 10, length: 10, location: 1 } }
                 ]
             },
-            moiniview: {
-                container:miniviewElement
-            },
+            plugins:[
+                {
+                    type:"miniview",
+                    options:{
+                        container:miniviewElement
+                    }
+                },
+                "lasso"
+            ],
             lassoFilter: ".controls, .controls *, .miniview, .miniview *",
             dragOptions: {
                 filter: ".delete *, .group-connect *, .delete",
@@ -115,8 +121,8 @@
                     toolkit.clearSelection();
                 },
                 modeChanged: function (mode) {
-                    jsPlumb.removeClass(jsPlumb.getSelector("[mode]"), "selected-mode");
-                    jsPlumb.addClass(jsPlumb.getSelector("[mode='" + mode + "']"), "selected-mode");
+                    renderer.removeClass(document.querySelector("[mode]"), "selected-mode");
+                    renderer.addClass(document.querySelector("[mode='" + mode + "']"), "selected-mode");
                 },
                 groupAdded:function(group) {
                     console.log(arguments)
@@ -129,36 +135,32 @@
         toolkit.load({type: "json", data: data});
 
         // pan mode/select mode
-        jsPlumb.on(".controls", "tap", "[mode]", function () {
+        var controls = document.querySelector(".controls")
+        renderer.on(controls, "tap", "[mode]", function () {
             renderer.setMode(this.getAttribute("mode"));
         });
 
         // on home button tap, zoom content to fit.
-        jsPlumb.on(".controls", "tap", "[reset]", function () {
+        renderer.on(controls, "tap", "[reset]", function () {
             toolkit.clearSelection();
             renderer.zoomToFit();
         });
 
         //
-        // use event delegation to attach event handlers to
-        // remove buttons. This callback finds the related Node and
-        // then tells the toolkit to delete it.
+        // use event delegation to attach event handlers to remove buttons.
         //
-        jsPlumb.on(canvasElement, "tap", ".delete", function (e) {
-            var info = toolkit.getObjectInfo(this);
+        renderer.bindModelEvent("tap", ".delete", function (event, target, info) {
             toolkit.removeNode(info.obj);
         });
 
-        jsPlumb.on(canvasElement, "tap", ".group-title .expand", function(e) {
-            var info = toolkit.getObjectInfo(this);
+        renderer.bindModelEvent("tap", ".group-title .expand", function(event, target, info) {
             if (info.obj) {
                 renderer.toggleGroup(info.obj);
             }
         });
 
-        jsPlumb.on(canvasElement, "tap", ".group-delete", function (e) {
-            var info = toolkit.getObjectInfo(this);
-            toolkit.removeGroup(info.obj, true);
+        renderer.bindModelEvent("tap", ".group-delete", function (event, target, info) {
+            toolkit.remove(info.obj, true);
         });
 
         //
@@ -167,7 +169,7 @@
         //
         // SurfaceDropManager is a new component from version 1.14.7 onwards, which has an underlying drop manager.
 
-        new SurfaceDropManager({
+        jsPlumbToolkitDrop.createSurfaceManager({
             surface:renderer,
             source:document.querySelector(".node-palette"),
             selector:"[data-node-type]",
@@ -178,7 +180,7 @@
             }
         });
 
-        var datasetView = new jsPlumbSyntaxHighlighter(toolkit, ".jtk-demo-dataset", "json", 2);
+        var datasetView = jsPlumbToolkitSyntaxHighlighter.newInstance(toolkit, ".jtk-demo-dataset", 2);
     });
 
 })();
