@@ -9,7 +9,8 @@
 /tmp
 
 # dependencies
-/node_modules
+node_modules
+_build
 
 # IDEs and editors
 /.idea
@@ -43,5 +44,4 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
-/ts/_build/
-node_modules
+
