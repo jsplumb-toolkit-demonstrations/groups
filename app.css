@@ -96,7 +96,7 @@
     min-height:0;
 }
 
-.jtk-group.jtk-group-collapsed .group-title button:after {
+.jtk-group.jtk-group-collapsed .group-title .expand:after {
     content:"+";
 }
 
@@ -118,4 +118,17 @@
 .jtk-node .add, .jtk-node .delete {
     position:absolute;
     top:3px;
+}
+
+
+.jtk-surface.jtk-drag-drop-active {
+    outline:6px dotted #4ea758 !important;
+}
+
+.jtk-surface.jtk-drag-drop-hover {
+    outline: 6px solid #f7a45d !important;
+}
+
+[data-jtk-managed].jtk-drag-drop-hover {
+    outline: 6px solid #f7a45d !important;
 }
