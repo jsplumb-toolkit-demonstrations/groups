@@ -9,9 +9,9 @@
         // 1. declare some JSON data for the graph. This syntax is a JSON equivalent of GraphML.
         var data = {
             "groups":[
-                {"id":"one", "title":"Group 1", "left":100, top:50 },
-                {"id":"two", "title":"Group 2", "left":750, top:250, type:"constrained"  },
-                {"id":"three", "title":"Nested Group", "left":50, "top":50, "group":"two"  }
+                { "id":"one", "title":"Group 1", "left":100, top:50 },
+                { "id":"two", "title":"Group 2", "left":750, top:250, type:"constrained"  },
+                { "id":"three", "title":"Nested Group", "left":50, "top":50, "group":"two"  }
             ],
             "nodes": [
                 { "id": "window1", "name": "1", "left": 10, "top": 20, group:"one" },
@@ -23,19 +23,19 @@
                 { "id": "window7", "name": "7", "left": 50, "top": 450 }
             ],
             "edges": [
-                { source:"window3", target:"one"},
-                { source:"window3", target:"window4"},
-                { source:"one", target:"two"},
-                { source:"window5", target:"window6"},
-                { source:"window1", target:"window2"},
-                { source:"window1", target:"window5"}
+                { source:"window3", target:"one" },
+                { source:"window3", target:"window4" },
+                { source:"one", target:"two" },
+                { source:"window5", target:"window6" },
+                { source:"window1", target:"window2" },
+                { source:"window1", target:"window5" }
             ]
         };
 
         var view = {
             nodes: {
                 "default": {
-                    template: "tmplNode",
+                    templateId: "tmplNode",
                     events: {
                         tap: function (params) {
                             toolkit.toggleSelection(params.node);
@@ -45,20 +45,12 @@
             },
             groups:{
                 "default":{
-                    template:"tmplGroup",
+                    templateId:"tmplGroup",
                     endpoint:"Blank",
                     anchor:"Continuous",
                     revert:false,
                     orphan:true,
-                    constrain:false,
-                    layout:{
-                        type:"Circular"
-                    },
-                    events:{
-                        click:function(){
-                            console.log(arguments)
-                        }
-                    }
+                    constrain:false
                 },
                 constrained:{
                     parent:"default",
@@ -90,7 +82,9 @@
             view: view,
             layout: {
                 type: "Spring",
-                absoluteBacked:true
+                options: {
+                    absoluteBacked: true
+                }
             },
             defaults: {
                 anchor:"Continuous",
@@ -98,7 +92,7 @@
                 connector: { type:"StateMachine", options:{ cssClass: "connectorClass", hoverClass: "connectorHoverClass" } },
                 paintStyle: { strokeWidth: 1, stroke: '#89bcde' },
                 hoverPaintStyle: { stroke: "orange" },
-                overlays: [
+                connectionOverlays: [
                     { type:"Arrow", options:{ fill: "#09098e", width: 10, length: 10, location: 1 } }
                 ]
             },
@@ -109,9 +103,13 @@
                         container:miniviewElement
                     }
                 },
-                "lasso"
+                {
+                    type:"lasso",
+                    options:{
+                        filter:".controls, .controls *, .miniview, .miniview *"
+                    }
+                }
             ],
-            lassoFilter: ".controls, .controls *, .miniview, .miniview *",
             dragOptions: {
                 filter: ".delete *, .group-connect *, .delete",
                 magnetize:true
@@ -123,9 +121,6 @@
                 modeChanged: function (mode) {
                     renderer.removeClass(document.querySelector("[mode]"), "selected-mode");
                     renderer.addClass(document.querySelector("[mode='" + mode + "']"), "selected-mode");
-                },
-                groupAdded:function(group) {
-                    console.log(arguments)
                 }
             },
             consumeRightClick:false,

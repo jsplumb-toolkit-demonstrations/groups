@@ -14,28 +14,24 @@
 
         <!-- content -->
         <script type="jtk" id="tmplNode">
-            <div style="width:${w}px;height:${h}px;">
+            <div style="width:${w}px;height:${h}px;" data-jtk-target="true">
                 ${name}
                 <div class="delete" title="Click to delete"/>
-                <div class="connect"/>
-                <jtk-source filter=".connect"/>
-                <jtk-target/>
+                <div class="connect" data-jtk-source="true"/>
             </div>
         </script>
 
         <script type="jtk" id="tmplGroup">
-            <div>
+            <div data-jtk-target="true">
                 <div class="group-title">
                     ${title}
                     <button class="expand"></button>
                     <button class="group-delete"></button>
                 </div>
-                <div jtk-group-content="true"></div>
-                <div class="group-connect connect">
-                <i class="fa fa-chain"></i>
+                <div data-jtk-group-content="true"></div>
+                <div class="group-connect connect" data-jtk-source="true">
+                    <i class="fa fa-chain"></i>
                 </div>
-                <jtk-source filter=".group-connect, .group-connect *"/>
-                <jtk-target/>
             </div>
         </script>
 
@@ -86,10 +82,15 @@
         <!-- /content -->
 
         <!-- imports -->
+        <script src="node_modules/@jsplumb/util/js/jsplumb.util.umd.js"></script>
         <script src="node_modules/@jsplumb/core/js/jsplumb.core.umd.js"></script>
         <script src="node_modules/@jsplumb/browser-ui/js/jsplumb.browser-ui.umd.js"></script>
         <script src='node_modules/@jsplumbtoolkit/core/js/jsplumbtoolkit.core.umd.js'></script>
+        <script src="node_modules/@jsplumbtoolkit/layout-spring/js/jsplumbtoolkit.layout-spring.umd.js"></script>
         <script src='node_modules/@jsplumbtoolkit/browser-ui/js/jsplumbtoolkit.browser-ui.umd.js'></script>
+        <script src='node_modules/@jsplumbtoolkit/plugin-miniview/js/jsplumbtoolkit.plugin-miniview.umd.js'></script>
+        <script src='node_modules/@jsplumbtoolkit/plugin-lasso/js/jsplumbtoolkit.plugin-lasso.umd.js'></script>
+        <script src='node_modules/@jsplumb/connector-bezier/js/jsplumb.connector-bezier.umd.js'></script>
         <script src="node_modules/@jsplumbtoolkit/drop/js/jsplumbtoolkit.drop.umd.js"></script>
         <script src="node_modules/@jsplumb/json-syntax-highlighter/jsplumbtoolkit-syntax-highlighter.umd.js"></script>
         <script src="node_modules/@jsplumb/toolkit-demo-support/jsplumbtoolkit-demo-support.umd.js"></script>
