@@ -7,14 +7,13 @@ import {
     EVENT_CLICK,
     EVENT_SURFACE_MODE_CHANGED, EVENT_CANVAS_CLICK
 } from "@jsplumbtoolkit/browser-ui"
+import { BlankEndpoint, AnchorLocations, DEFAULT, ArrowOverlay } from "@jsplumb/core"
 import {Group, Node, ObjectInfo, EVENT_GROUP_ADDED, AbsoluteLayout} from "@jsplumbtoolkit/core"
 import {createSurfaceManager} from "@jsplumbtoolkit/drop"
 import { newInstance as newSyntaxHighlighter } from "@jsplumb/json-syntax-highlighter"
-import {BlankEndpoint, AnchorLocations, DEFAULT, ArrowOverlay} from "@jsplumb/core"
 import {SpringLayout} from "@jsplumbtoolkit/layout-spring"
 import {MiniviewPlugin} from "@jsplumbtoolkit/plugin-miniview"
 import {StateMachineConnector} from "@jsplumb/connector-bezier"
-import { CircularLayout } from "@jsplumbtoolkit/layout-circular"
 import {LassoPlugin} from "@jsplumbtoolkit/plugin-lasso"
 
 ready(() => {
