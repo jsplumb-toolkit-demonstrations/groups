@@ -12,9 +12,9 @@ import {Group, Node, ObjectInfo, EVENT_GROUP_ADDED, AbsoluteLayout} from "@jsplu
 import {createSurfaceManager} from "@jsplumbtoolkit/drop"
 import { newInstance as newSyntaxHighlighter } from "@jsplumb/json-syntax-highlighter"
 import {SpringLayout} from "@jsplumbtoolkit/layout-spring"
-import {MiniviewPlugin} from "@jsplumbtoolkit/plugin-miniview"
+import {MiniviewPlugin} from "@jsplumbtoolkit/browser-ui-plugin-miniview"
 import {StateMachineConnector} from "@jsplumb/connector-bezier"
-import {LassoPlugin} from "@jsplumbtoolkit/plugin-lasso"
+import {LassoPlugin} from "@jsplumbtoolkit/browser-ui-plugin-lasso"
 
 ready(() => {
 
@@ -108,7 +108,7 @@ ready(() => {
     })
 
     // get the various dom elements
-    const mainElement = document.querySelector("#jtk-demo-absolute"),
+    const mainElement = document.querySelector(".jtk-demo-main"),
         canvasElement = mainElement.querySelector(".jtk-demo-canvas"),
         miniviewElement = mainElement.querySelector(".miniview");
 
