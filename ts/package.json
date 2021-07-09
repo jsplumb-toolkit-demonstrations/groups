@@ -3,7 +3,7 @@
         "build": "set -e;npx tsc;npx rollup -c rollup.config.js"
     },
     "dependencies": {
-        "@jsplumbtoolkit/browser-ui": "^5.0.0-RC1",
+        "@jsplumbtoolkit/browser-ui-vanilla": "^5.0.0-RC1",
         "@jsplumbtoolkit/drop": "^5.0.0-RC1",
         "@jsplumbtoolkit/layout-circular": "^5.0.0-RC1",
         "@jsplumbtoolkit/layout-spring": "^5.0.0-RC1",
