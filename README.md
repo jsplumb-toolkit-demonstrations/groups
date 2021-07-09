@@ -39,7 +39,6 @@ Font Awesome, `jsplumbtoolkit-demo.css`, and `app.css` are used for this demo an
 
 ```xml
 <script src="node_modules/jsplumbtoolkit/dist/js/jsplumbtoolkit.js"></script>
-<script src="node_modules/jsplumbtoolkit/dist/js/jsplumbtoolkit-undo-redo.js"></script>
 <script src="node_modules/jsplumbtoolkit/dist/js/jsplumbtoolkit-drop.js"></script>
 <script src="app.js"></script>
 ```
