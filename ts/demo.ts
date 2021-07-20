@@ -11,7 +11,8 @@ import {
     newInstance
 } from "@jsplumbtoolkit/browser-ui-vanilla"
 
-import { BlankEndpoint, AnchorLocations, DEFAULT, ArrowOverlay } from "@jsplumb/core"
+import { BlankEndpoint, ArrowOverlay } from "@jsplumb/core"
+import { AnchorLocations, DEFAULT } from "@jsplumb/common"
 import {Group, Node, ObjectInfo, EVENT_GROUP_ADDED, AbsoluteLayout} from "@jsplumbtoolkit/core"
 import {createSurfaceManager} from "@jsplumbtoolkit/drop"
 import { newInstance as newSyntaxHighlighter } from "@jsplumb/json-syntax-highlighter"
