@@ -15,7 +15,6 @@ import { BlankEndpoint, ArrowOverlay } from "@jsplumb/core"
 import { AnchorLocations, DEFAULT } from "@jsplumb/common"
 import {Group, Node, ObjectInfo, EVENT_GROUP_ADDED, AbsoluteLayout} from "@jsplumbtoolkit/core"
 import {createSurfaceManager} from "@jsplumbtoolkit/drop"
-import { newInstance as newSyntaxHighlighter } from "@jsplumb/json-syntax-highlighter"
 import {SpringLayout} from "@jsplumbtoolkit/layout-spring"
 import {MiniviewPlugin} from "@jsplumbtoolkit/browser-ui-plugin-miniview"
 import {StateMachineConnector} from "@jsplumb/connector-bezier"
@@ -229,8 +228,5 @@ ready(() => {
             };
         }
     })
-
-    // create a JSON dump, this is just so you can see the dataset changing.
-    newSyntaxHighlighter(toolkit, ".jtk-demo-dataset", 2)
 })
 
