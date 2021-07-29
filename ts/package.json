@@ -3,13 +3,13 @@
         "build": "set -e;npx tsc;npx rollup -c rollup.config.js"
     },
     "dependencies": {
-        "@jsplumbtoolkit/browser-ui-vanilla": "^5.0.0-RC1",
-        "@jsplumbtoolkit/drop": "^5.0.0-RC1",
-        "@jsplumbtoolkit/layout-circular": "^5.0.0-RC1",
-        "@jsplumbtoolkit/layout-spring": "^5.0.0-RC1",
-        "@jsplumb/connector-bezier": "^5.0.0-RC1",
-        "@jsplumbtoolkit/browser-ui-plugin-miniview": "^5.0.0-RC1",
-        "@jsplumbtoolkit/browser-ui-plugin-lasso": "^5.0.0-RC1"
+        "@jsplumbtoolkit/browser-ui-vanilla": "^5.0.0-RC9",
+        "@jsplumbtoolkit/drop": "^5.0.0-RC9",
+        "@jsplumbtoolkit/layout-circular": "^5.0.0-RC9",
+        "@jsplumbtoolkit/layout-spring": "^5.0.0-RC9",
+        "@jsplumb/connector-bezier": "^5.0.0-RC9",
+        "@jsplumbtoolkit/browser-ui-plugin-miniview": "^5.0.0-RC9",
+        "@jsplumbtoolkit/browser-ui-plugin-lasso": "^5.0.0-RC9"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.4",
