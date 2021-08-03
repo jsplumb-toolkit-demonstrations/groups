@@ -3,7 +3,12 @@ import {
     SurfaceViewOptions,
     EVENT_TAP,
     EVENT_CLICK,
-    EVENT_SURFACE_MODE_CHANGED, EVENT_CANVAS_CLICK
+    EVENT_SURFACE_MODE_CHANGED,
+    EVENT_CANVAS_CLICK,
+    BlankEndpoint,
+    ArrowOverlay,
+    AnchorLocations,
+    DEFAULT
 } from "@jsplumbtoolkit/browser-ui"
 
 import {
@@ -11,8 +16,6 @@ import {
     newInstance
 } from "@jsplumbtoolkit/browser-ui-vanilla"
 
-import { BlankEndpoint, ArrowOverlay } from "@jsplumb/core"
-import { AnchorLocations, DEFAULT } from "@jsplumb/common"
 import {Group, Node, ObjectInfo, EVENT_GROUP_ADDED, AbsoluteLayout} from "@jsplumbtoolkit/core"
 import {createSurfaceManager} from "@jsplumbtoolkit/drop"
 import {SpringLayout} from "@jsplumbtoolkit/layout-spring"
@@ -50,6 +53,21 @@ ready(() => {
             { source:"window1", target:"window5"}
         ]
     };
+
+    /**
+     * issues with groups:
+     *
+     * - surely 'revert' is the opposite of orphan, right?  what is the point of setting one of these to false and the other to true?
+     * - setting `constrain:true` would mean none of the other flags - revert, orphan, autoSize, had any point, right?
+     * - when you drag a child out of the bounds of group 1, it just resizes the group, instead of orphaning the child. NB this only applies if you drag it
+     *   in a positive direction in either axis. if you drag it out of the top/left of the element it does get orphaned, but the group still resizes as if the node
+     *   is still a child. ALSO in this case, the miniview DOES repaint itself wtaf.
+     * - autosize doesnt work when it should shrink
+     * - the miniview doesnt respond to size change events that resulted from an auto size
+     * - there should be a type of 'constrain' where the user can still drag an element out of the bounds of the group, but the element is not
+     *   orphaned, the group is resized instead. that is kind of how group one is erroneously working now. I think it's a combination of autoSize:true and
+     *   not having set `orphan:true`
+     */
 
     const view:SurfaceViewOptions = {
         nodes: {
