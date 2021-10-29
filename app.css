@@ -88,6 +88,10 @@
     cursor: pointer;
 }
 
+.connect {
+    cursor:pointer;
+}
+
 .jtk-group {
     background-color: #f7f7f7;
 }
