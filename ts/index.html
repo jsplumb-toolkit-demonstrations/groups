@@ -4,42 +4,37 @@
         <title>jsPlumb Toolkit - Groups</title>
         <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
         <!-- CSS -->
-        <link rel="stylesheet" href="node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit.css">
-        <link rel="stylesheet" href="node_modules/@jsplumb/json-syntax-highlighter/jsplumbtoolkit-syntax-highlighter.css">
-        <link rel="stylesheet" href="node_modules/@jsplumb/toolkit-demo-support/jsplumbtoolkit-demo-support.css">
+        <link rel="stylesheet" href="node_modules/@jsplumbtoolkit/browser-ui/css/jsplumbtoolkit.css">
+        <link rel="stylesheet" href="node_modules/@jsplumbtoolkit/browser-ui/css/jsplumbtoolkit-demo-support.css">
         <!-- /CSS -->
-        <link rel="stylesheet" href="app.css">
+        <link rel="stylesheet" href="../app.css">
     </head>
     <body>
 
         <!-- content -->
         <script type="jtk" id="tmplNode">
-            <div style="width:${w}px;height:${h}px;">
+            <div style="width:${w}px;height:${h}px;" data-jtk-target="true">
                 ${name}
                 <div class="delete" title="Click to delete"/>
-                <div class="connect"/>
-                <jtk-source filter=".connect"/>
-                <jtk-target/>
+                <div class="connect" data-jtk-source="true"/>
             </div>
         </script>
 
         <script type="jtk" id="tmplGroup">
-            <div>
+            <div data-jtk-target="true">
                 <div class="group-title">
                     ${title}
                     <button class="expand"></button>
                     <button class="group-delete"></button>
                 </div>
-                <div jtk-group-content="true"></div>
-                <div class="group-connect connect">
-                <i class="fa fa-chain"></i>
+                <div data-jtk-group-content="true"></div>
+                <div class="group-connect connect" data-jtk-source="true">
+                    <i class="fa fa-chain"></i>
                 </div>
-                <jtk-source filter=".group-connect, .group-connect *"/>
-                <jtk-target/>
             </div>
         </script>
 
-        <div class="jtk-demo-main" id="jtk-demo-absolute">
+        <div class="jtk-demo-main">
 
             <!-- this is the main drawing area -->
             <div class="jtk-demo-canvas">
@@ -58,7 +53,7 @@
                     <div title="Drag Node to canvas" data-node-type="node" class="sidebar-item">
                         <i class="icon-tablet"></i>Drag Node
                     </div>
-                    <div title="Drag Group to canvas" jtk-is-group="true" data-node-type="group" class="sidebar-item">
+                    <div title="Drag Group to canvas" data-jtk-is-group="true" data-node-type="group" class="sidebar-item">
                         <i class="icon-tablet"></i>Drag Group
                     </div>
                 </div>
@@ -67,9 +62,7 @@
                         This is a demonstration of the Groups functionality.
                     </p>
                     <ul>
-                        <li>Groups have a Circular layout applied to their child nodes</li>
-                        <li>Drag new Nodes/Groups from the palette on the left onto the workspace. You can drag Nodes directly into
-                            Groups.</li>
+                        <li>Drag new Nodes/Groups from the palette on the left onto the workspace. You can drag Nodes directly into Groups.</li>
                         <li>Collapse/Expand Groups with the -/+ buttons</li>
                         <li>Drag existing Nodes into Groups to add them.</li>
                         <li>Nodes can be dragged out of Group 1 but not out of Group 2</li>
@@ -77,7 +70,6 @@
                         <li>Click the 'Home' icon to zoom out and see all the nodes.</li>
                     </ul>
                 </div>
-                <div class="jtk-demo-dataset"></div>
             </div>
 
 
@@ -85,15 +77,10 @@
         </div>
         <!-- /content -->
 
-        <!-- imports -->
-        <script src='node_modules/jsplumbtoolkit/dist/js/jsplumbtoolkit.js'></script>
-        <script src="node_modules/jsplumbtoolkit-drop/dist/js/jsplumbtoolkit-drop.js"></script>
-        <script src="node_modules/@jsplumb/json-syntax-highlighter/jsplumbtoolkit-syntax-highlighter.umd.js"></script>
-        <script src="node_modules/@jsplumb/toolkit-demo-support/jsplumbtoolkit-demo-support.umd.js"></script>
-        <!-- /imports -->
+
 
         <!-- demo -->
-        <script src="app.js"></script>
+        <script src="_build/demo.umd.js"></script>
         <!-- /demo -->
 
     </body>
