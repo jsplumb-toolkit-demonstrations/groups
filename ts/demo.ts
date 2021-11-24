@@ -13,7 +13,7 @@ import {
     newInstance
 } from "@jsplumbtoolkit/browser-ui-vanilla"
 
-import {Group, Node, ObjectInfo, EVENT_GROUP_ADDED, AbsoluteLayout} from "@jsplumbtoolkit/core"
+import {Group, Node, ObjectInfo, EVENT_GROUP_ADDED, AbsoluteLayout, EVENT_UNDOREDO_UPDATE, UndoRedoUpdateParams} from "@jsplumbtoolkit/core"
 import {createSurfaceManager} from "@jsplumbtoolkit/drop"
 import {SpringLayout} from "@jsplumbtoolkit/layout-spring"
 import {MiniviewPlugin} from "@jsplumbtoolkit/browser-ui-plugin-miniview"
@@ -105,7 +105,8 @@ ready(() => {
                 events:{
                     [EVENT_CLICK]:function() {
                         console.log(arguments)
-                    }
+                    },
+                    "mouseover":function() { console.log("mouseover"); }
                 }
             }
         }
@@ -191,7 +192,7 @@ ready(() => {
 
     // pan mode/select mode
     const controls = document.querySelector(".controls")
-    renderer.on(controls, "tap", "[mode]", function () {
+    renderer.on(controls, EVENT_TAP, "[mode]", function () {
         renderer.setMode(this.getAttribute("mode"));
     });
 
@@ -199,9 +200,22 @@ ready(() => {
     // on home button tap, zoom content to fit. Note here we use `on` to bind an event, as we're just binding to a DOM
     // element that is not part of our dataset. Compare this with `bindModelEvent` below.
     //
-    renderer.on(controls, "tap", "[reset]", function () {
+    renderer.on(controls, EVENT_TAP, "[reset]", function () {
         toolkit.clearSelection();
         renderer.zoomToFit();
+    })
+
+    toolkit.bind(EVENT_UNDOREDO_UPDATE, (state:UndoRedoUpdateParams) => {
+        controls.setAttribute("can-undo", state.undoCount > 0 ? "true" : "false")
+        controls.setAttribute("can-redo", state.redoCount > 0 ? "true" : "false")
+    })
+
+    renderer.on(controls, EVENT_TAP, "[undo]",  () => {
+        toolkit.undo()
+    })
+
+    renderer.on(controls, EVENT_TAP, "[redo]", () => {
+        toolkit.redo()
     })
 
     //
