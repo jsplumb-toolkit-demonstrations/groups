@@ -13,8 +13,8 @@
 
         <!-- content -->
         <script type="jtk" id="tmplNode">
-            <div style="width:${w}px;height:${h}px;" data-jtk-target="true">
-                ${name}
+            <div style="width:{{w}}px;height:{{h}}px;" data-jtk-target="true">
+                {{name}}
                 <div class="delete" title="Click to delete"/>
                 <div class="connect" data-jtk-source="true"/>
             </div>
@@ -23,7 +23,7 @@
         <script type="jtk" id="tmplGroup">
             <div data-jtk-target="true">
                 <div class="group-title">
-                    ${title}
+                    {{title}}
                     <button class="expand"></button>
                     <button class="group-delete"></button>
                 </div>

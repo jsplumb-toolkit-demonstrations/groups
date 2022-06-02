@@ -11,11 +11,11 @@ import {
     DEFAULT,
     ready,
     newInstance
-} from "@jsplumbtoolkit/browser-ui-vanilla"
+} from "@jsplumbtoolkit/browser-ui-vanilla-2"
 
 import {Group, Node, ObjectInfo, EVENT_GROUP_ADDED, AbsoluteLayout, EVENT_UNDOREDO_UPDATE, UndoRedoUpdateParams} from "@jsplumbtoolkit/core"
 import {createSurfaceManager} from "@jsplumbtoolkit/drop"
-import {SpringLayout} from "@jsplumbtoolkit/layout-spring"
+import {ForceDirectedLayout} from "@jsplumbtoolkit/layout-force-directed"
 import {MiniviewPlugin} from "@jsplumbtoolkit/browser-ui-plugin-miniview"
 import {StateMachineConnector} from "@jsplumb/connector-bezier"
 import {LassoPlugin} from "@jsplumbtoolkit/browser-ui-plugin-lasso"
@@ -139,7 +139,7 @@ ready(() => {
     const renderer = toolkit.render(canvasElement, {
         view: view,
         layout: {
-            type: SpringLayout.type,
+            type: ForceDirectedLayout.type,
             options: {
                 absoluteBacked: true
             }
