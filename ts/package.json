@@ -1,16 +1,10 @@
 {
-    "version": "5.10.6",
+    "version": "6.0.0",
     "scripts": {
         "build": "set -e;npx tsc;npx rollup -c rollup.config.js"
     },
     "dependencies": {
-        "@jsplumbtoolkit/browser-ui-vanilla-2": "^5.12.0",
-        "@jsplumbtoolkit/drop": "^5.12.0",
-        "@jsplumbtoolkit/layout-circular": "^5.12.0",
-        "@jsplumbtoolkit/layout-force-directed": "^5.12.0",
-        "@jsplumb/connector-bezier": "^5.12.0",
-        "@jsplumbtoolkit/browser-ui-plugin-miniview": "^5.12.0",
-        "@jsplumbtoolkit/browser-ui-plugin-lasso": "^5.12.0"
+        "@jsplumbtoolkit/browser-ui": "^6.0.0"
     },
     "devDependencies": {
         "@types/node": "14.17.3",

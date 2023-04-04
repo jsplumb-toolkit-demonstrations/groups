@@ -10,15 +10,19 @@ import {
     AnchorLocations,
     DEFAULT,
     ready,
-    newInstance
-} from "@jsplumbtoolkit/browser-ui-vanilla-2"
-
-import {Group, Node, ObjectInfo, EVENT_GROUP_ADDED, AbsoluteLayout, EVENT_UNDOREDO_UPDATE, UndoRedoUpdateParams} from "@jsplumbtoolkit/core"
-import {createSurfaceManager} from "@jsplumbtoolkit/drop"
-import {ForceDirectedLayout} from "@jsplumbtoolkit/layout-force-directed"
-import {MiniviewPlugin} from "@jsplumbtoolkit/browser-ui-plugin-miniview"
-import {StateMachineConnector} from "@jsplumb/connector-bezier"
-import {LassoPlugin} from "@jsplumbtoolkit/browser-ui-plugin-lasso"
+    newInstance,
+    Group,
+    Node,
+    ObjectInfo,
+    EVENT_GROUP_ADDED,
+    AbsoluteLayout,
+    EVENT_UNDOREDO_UPDATE,
+    UndoRedoUpdateParams,
+    createSurfaceDropManager,
+    ForceDirectedLayout,
+    MiniviewPlugin,
+    StateMachineConnector,
+    LassoPlugin} from "@jsplumbtoolkit/browser-ui"
 
 ready(() => {
 
@@ -247,7 +251,7 @@ ready(() => {
     // Here, we are registering elements that we will want to drop onto the workspace and have
     // the toolkit recognise them as new nodes
     //
-    createSurfaceManager({
+    createSurfaceDropManager({
         surface:renderer,
         source:document.querySelector(".node-palette"),
         selector:"[data-node-type]",
